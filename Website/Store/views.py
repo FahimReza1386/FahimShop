@@ -9,3 +9,6 @@ from .models import Product
 def Home(request):
     Products = Product.objects.all()
     return render(request=request , template_name="Home.html" , context={'Products':Products})
+
+def About(request):
+    return render(request=request , template_name="About.html" , context={})
