@@ -12,3 +12,11 @@ def Home(request):
 
 def About(request):
     return render(request=request , template_name="About.html" , context={})
+
+
+def Login_User(request):
+    return render(request=request , template_name="Login.html" , context={})
+
+
+def Logout_User(request):
+    return render(request=request , template_name="Logout.html" , context={})
