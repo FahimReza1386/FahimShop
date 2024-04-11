@@ -1,13 +1,15 @@
 from django.shortcuts import render , redirect
 from . import models
 from .forms import RegisterForm
-from .models import Product
+from .models import Category,Product
 from django.contrib.auth import authenticate , login , logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from . import forms
+from django.contrib.auth.models import Group
+
 
 # Create your views here.
 
@@ -68,3 +70,11 @@ def Product_View(request , id):
     Product1 = Product.objects.filter(id=id).all()
     return render(request=request , template_name='Product.html' , context={'Product1': Product1 })
 
+
+
+def Category1(request , foo):
+    #Replaces Speaces Whis Dash
+    foo = foo.replace('-', ' ')
+    category = Category.objects.get(name=foo)
+    All_Product = Product.objects.filter(category=category).all()
+    return render(request=request , template_name='Category.html' , context={'Product': All_Product , 'Category': category })

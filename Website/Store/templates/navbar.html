@@ -18,19 +18,25 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'Register' %}">Register</a></li>
                         {% endif %}
 
+                        <div class="dropdown">
+          <button type="button" class="btn dropdown-toggle ml-3" data-toggle="dropdown">
+            Category
+          </button>
+          <div class="dropdown-menu">
+                          <a class="dropdown-item" href="/">همه محصولات</a>
+            <a class="dropdown-item" href="/Category/لپ-تاپ">لپ تاپ</a>
+            <a class="dropdown-item" href="/Category/پرینتر">پرینتر</a>
+            <a class="dropdown-item" href="/Category/موبایل">موبایل</a>
+            <a class="dropdown-item" href="/Category/ساعت-هوشمند">ساعت هوشمند</a>
+            <a class="dropdown-item" href="/Category/دوربین">دوربین</a>
+            <a class="dropdown-item" href="/Category/هندزفری">هندزفری</a>
+            <a class="dropdown-item" href="/Category/لوازم-کامپیوتر">لوازم کامپیوتر</a>
+            <a class="dropdown-item" href="/Category/وسایل-نقلیه">وسایل نقلیه</a>
+            <a class="dropdown-item" href="/Category/مانیتور">مانیتور</a>
+          </div>
+        </div>
 
 
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                            </ul>
-                        </li>
-                    </ul>
                     <form class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
