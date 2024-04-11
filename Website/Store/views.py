@@ -63,3 +63,8 @@ def Register_User(request):
     else:
         forms = RegisterForm()
         return render(request=request , template_name='Register.html' , context={'form' : forms})
+
+def Product_View(request , id):
+    Product1 = Product.objects.filter(id=id).all()
+    return render(request=request , template_name='Product.html' , context={'Product1': Product1 })
+
