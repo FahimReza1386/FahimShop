@@ -13,4 +13,4 @@ class Cart:
 
         # I am writing this so that it is all over the website
 
-        self.cart = Cart
+        self.Cart = Cart
