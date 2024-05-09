@@ -14,3 +14,14 @@ class Cart:
         # I am writing this so that it is all over the website
 
         self.Cart = Cart
+
+    def Add(self , product):
+        product_id = str(product.id)
+
+        #Logic
+        if product_id in self.Cart:
+            pass
+        else:
+            self.Cart[product_id] = {'price ' : str(product.price)}
+
+        self.session.modified = True

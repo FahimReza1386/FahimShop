@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
-
+{% load static %}
 
 {% block content %}
 
@@ -30,7 +30,10 @@
                         <ins><h6 class="text-center">{{ item.price | intcomma }} : قیمت</h6></ins>
                       {% endif %}
 
-                                            <a href="#" class="btn btn-secondary p-3 mt-5">افزودن به سبد خرید</a>      </div>
+                                        <p class="text-center">ID = {{ item.id }}</p>
+                                            <a href="/" class="btn btn-secondary p-3 mt-5">بازگشت به فروشگاه</a>
+                                <button class="btn btn-secondary p-3 mt-5 ml-2"  value="{{ item.id }}" type="button" id="add-cart">افزودن به سبد خرید</button>
+      </div>
     </div>
   </div>
 </div>
@@ -39,5 +42,10 @@
 
 
 <br/><br/><br/><br/>
+
+
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
+
     {% endfor %}
 {% endblock %}
