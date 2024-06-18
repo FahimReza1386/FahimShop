@@ -7,117 +7,156 @@
 
 
 
-    <!-- Header-->
+<!-- Header-->
 
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">اینجا سبد خرید شماست</h1>
-                    <p class="lead fw-normal text-white-50 mb-0 mt-3">.به سبد خریدتون خوش آمدید</p>
-                </div>
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">اینجا سبد خرید شماست</h1>
+            <p class="lead fw-normal text-white-50 mb-0 mt-3">.به سبد خریدتون خوش آمدید</p>
+        </div>
+    </div>
+</header>
+
+<br /><br /><br /><br />
+<br /><br /><br /><br />
+<br /><br /><br /><br />
+{% if cart_summary %}
+
+{% for item in cart_summary %}
+
+
+
+<div class="container">
+
+
+    <div class="card mb-3 p-5">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ item.image.url }}" class="img-fluid rounded-start" alt="...">
             </div>
-        </header>
-
-
-
-        <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                   {% for item in Products %}
+            <div class="col-md-8 bg-info">
+                <div class="card-body">
+                    {% csrf_token %}
+                    <h5 class="card-title text-right">{{ item.name }}</h5>
+                    <p class="card-text text-right m-2">{{ item.description }}</p>
                     {% if item.is_sale %}
-                     <div class="col mb-5">
-                        <div class="card h-100">
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem ; right: 0.5rem;">تخفیف</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{ item.image.url }}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">{{ item.name }}</h5>
-                                    <hr/>
-                                    <!-- Product price-->
-                                    <h6 style="text-decoration: line-through">{{ item.price | intcomma }} : قیمت</h6>
-                                    <br/>
-                                    <h6> <ins>  {{ item.sale_price | intcomma }}  </ins> : قیمت با تخفیف</h6>تومان
-                                    <hr/>
-                                    در دسته :
-                                    <a href="#">{{ item.category }}</a>
+                    <h6 style="text-decoration: line-through" class="text-center mt-5">{{ item.price | intcomma }} : قبل از تخفیف</h6>
 
-                                    <div class="d-flex justify-content-center small  text-warning mb-2 mt-3">
-                                        <div class="bi-star-fill"></div>
-                                        &nbsp;&nbsp;تخفیف&nbsp;&nbsp;
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/Product/{{ item.id }}">اطلاعات بیشتر</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    {% elif Not_Avaliable %}
-                                <div class="col mb-5">
-                                <div class="card h-100">
-                                    <!-- Product image-->
-                                    <img class="card-img-top" src="{{ item.image.url }}" alt="..." />
-                                    <!-- Product details-->
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <!-- Product name-->
-                                            <h5 class="fw-bolder">{{ item.name }}</h5>
-                                            <hr/>
-                                            <!-- Product price-->
-
-                                            {{ item.price | intcomma }} : قیمت
-                                            <hr/>
-                                            در دسته :
-                                            <a href="#">{{ item.category }}</a>
-                                        </div>
-                                    </div>
-                                    <!-- Product actions-->
-                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/Product/{{ item.id }}">ناموجود</a></div>
-                                    </div>
-                                </div>
-                            </div>
+                    <ins>
+                        <h6 class="text-center " style="color: white ; font-weight: bold">{{ item.sale_price | intcomma }} : بعد از تخفیف</h6>
+                    </ins>
                     {% else %}
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{ item.image.url }}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">{{ item.name }}</h5>
-                                    <hr/>
-                                    <!-- Product price-->
+                    <hr />
+                    <ins>
+                        <h6 class="text-center">{{ item.price | intcomma }} : قیمت</h6>
+                    </ins>
+                    {% endif %}
 
-                                    {{ item.price | intcomma }} : قیمت
-                                    <hr/>
-                                    در دسته :
-                                    <a href="#">{{ item.category }}</a>
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/Product/{{ item.id }}">اطلاعات بیشتر</a></div>
-                            </div>
+                    <p class="text-center">ID = {{ item.id }}</p>
+
+                    <div class="row justify-content-center col-md-10 ml-5">
+                        <div class="col-md-3 mt-1 ml-5">Quantity :</div>
+                        <div class="col-md-3">
+                            <select class="form-select  form-select-sm" id="select{{ item.id }}">
+                                <option>
+
+                                    {% for key , value in qty.items %}
+
+                                            {% if key == item.id|slugify %}
+
+                                                {{ value }}
+
+                                            {% endif %}
+                                    {% endfor %}
+
+
+                                </option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
                         </div>
                     </div>
 
-                    {% endif %}
-                    {% endfor %}
 
-                    </div>
                 </div>
-            </div>
+                <a href="/Product/{{ item.id }}" class="btn btn-success p-3 mt-3 mb-3">اطلاعات بیشتر</a>
+                <button class="btn btn-secondary update-cart p-3 mt-3 mb-3"  type="button" data-index= "{{ item.id }}">Update</button>
+                <button class="btn btn-danger delete-cart p-3 mt-3 mb-3"  type="button" data-index= "{{ item.id }}">Delete</button>
 
-        </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+{% else %}
+<h2>Empty ...</h2>
+{% endif %}
+
+<br /><br /><br /><br />
+<br /><br /><br /><br />
+<br /><br /><br /><br />
+
+ <script src="/static/js/jquery.js"></script>
+<script>
+    // Update the Cart
+    $(document).on('click' , '.update-cart' , function (e){
+        e.preventDefault()
+        // Get the Data
+        var productid= $(this).data('index');
+        $.ajax({
+            type:'POST',
+            url : '{% url "Cart_Update" %}',
+            data : {
+                product_id : $(this).data('index'),
+                product_qty: $('#select' + productid + ' option:selected').text(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action : "post"
+            },
+
+            success : function (json) {
+                location.reload();
+            },
+
+            error : function (xhr , err , errmsg){
+                console.log(xhr)
+            }
+
+
+
+        })
+    })
+
+
+    // Delete the Cart
+    $(document).on('click' , '.delete-cart' , function (e){
+        e.preventDefault()
+        $.ajax({
+           type: 'POST',
+           url: '{% url "Cart_Delete" %}',
+           data: {
+               product_id: $(this).data('index'),
+               csrfmiddlewaretoken : '{{ csrf_token }}',
+               action : 'post',
+           },
+
+           success : function (json) {
+                location.reload();
+           },
+
+           error : function (xhr , err , errmsg){
+               console.log(xhr)
+           }
+        });
+    })
+
+
+
+</script>
 
 
 {% endblock %}

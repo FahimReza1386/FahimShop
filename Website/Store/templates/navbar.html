@@ -19,29 +19,29 @@
                         {% endif %}
 
                         <div class="dropdown">
-          <button type="button" class="btn dropdown-toggle ml-3" data-toggle="dropdown">
-            Category
-          </button>
-          <div class="dropdown-menu">
+                    <button type="button" class="btn dropdown-toggle ml-3" data-toggle="dropdown">
+                        Category
+                    </button>
+                 <div class="dropdown-menu">
                           <a class="dropdown-item" href="/">همه محصولات</a>
-            <a class="dropdown-item" href="/Category/لپ-تاپ">لپ تاپ</a>
-            <a class="dropdown-item" href="/Category/پرینتر">پرینتر</a>
-            <a class="dropdown-item" href="/Category/موبایل">موبایل</a>
-            <a class="dropdown-item" href="/Category/ساعت-هوشمند">ساعت هوشمند</a>
-            <a class="dropdown-item" href="/Category/دوربین">دوربین</a>
-            <a class="dropdown-item" href="/Category/هندزفری">هندزفری</a>
-            <a class="dropdown-item" href="/Category/لوازم-کامپیوتر">لوازم کامپیوتر</a>
-            <a class="dropdown-item" href="/Category/وسایل-نقلیه">وسایل نقلیه</a>
-            <a class="dropdown-item" href="/Category/مانیتور">مانیتور</a>
-          </div>
-        </div>
+                    <a class="dropdown-item" href="/Category/لپ-تاپ">لپ تاپ</a>
+                    <a class="dropdown-item" href="/Category/پرینتر">پرینتر</a>
+                    <a class="dropdown-item" href="/Category/موبایل">موبایل</a>
+                    <a class="dropdown-item" href="/Category/ساعت-هوشمند">ساعت هوشمند</a>
+                    <a class="dropdown-item" href="/Category/دوربین">دوربین</a>
+                    <a class="dropdown-item" href="/Category/هندزفری">هندزفری</a>
+                    <a class="dropdown-item" href="/Category/لوازم-کامپیوتر">لوازم کامپیوتر</a>
+                    <a class="dropdown-item" href="/Category/وسایل-نقلیه">وسایل نقلیه</a>
+                    <a class="dropdown-item" href="/Category/مانیتور">مانیتور</a>
+                    </div>
 
+                        </div>
 
                     <form class="d-flex" action="/Cart/">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>
                         </button>
                     </form>
                 </div>

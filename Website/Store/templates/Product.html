@@ -4,48 +4,93 @@
 
 {% block content %}
 
-    {% for item in Product1 %}
-<br/><br/>
+{% for item in Product1 %}
+<br /><br />
 
 
-        <div class="container">
+<div class="container">
 
 
 
-            <div class="card mb-3 p-5">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{ item.image.url }}" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8 bg-info">
-      <div class="card-body">
-        <h5 class="card-title text-right">{{ item.name }}</h5>
-        <p class="card-text text-right m-2">{{ item.description }}</p>
-                {% if item.is_sale %}
-                      <h6 style="text-decoration: line-through" class="text-center mt-5">{{ item.price | intcomma }} : قبل از تخفیف</h6>
+    <div class="card mb-3 p-5">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ item.image.url }}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8 bg-info">
+                <div class="card-body">
+                    {% csrf_token %}
+                    <h5 class="card-title text-right">{{ item.name }}</h5>
+                    <p class="card-text text-right m-2">{{ item.description }}</p>
+                    {% if item.is_sale %}
+                    <h6 style="text-decoration: line-through" class="text-center mt-5">{{ item.price | intcomma }} : قبل
+                        از تخفیف</h6>
 
-                        <ins><h6 class="text-center " style="color: white ; font-weight: bold">{{ item.sale_price | intcomma }} : بعد از تخفیف</h6></ins>
-                      {% else %}
-                      <hr/>
-                        <ins><h6 class="text-center">{{ item.price | intcomma }} : قیمت</h6></ins>
-                      {% endif %}
+                    <ins>
+                        <h6 class="text-center " style="color: white ; font-weight: bold">{{ item.sale_price | intcomma
+                            }} : بعد از تخفیف</h6>
+                    </ins>
+                    {% else %}
+                    <hr />
+                    <ins>
+                        <h6 class="text-center">{{ item.price | intcomma }} : قیمت</h6>
+                    </ins>
+                    {% endif %}
 
-                                        <p class="text-center">ID = {{ item.id }}</p>
-                                            <a href="/" class="btn btn-secondary p-3 mt-5">بازگشت به فروشگاه</a>
-                                <button class="btn btn-secondary p-3 mt-5 ml-2"  value="{{ item.id }}" type="button" id="add-cart">افزودن به سبد خرید</button>
-      </div>
-    </div>
-  </div>
-</div>
+                    <p class="text-center">ID = {{ item.id }}</p>
+
+                    <div class="row justify-content-center col-md-10 ml-5">
+                        <div class="col-md-3 mt-1 ml-5">Quantity :</div>
+                        <div class="col-md-3">
+                            <select class="form-select  form-select-sm" id="qty-cart">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <a href="/" class="btn btn-secondary p-3 mt-5">بازگشت به فروشگاه</a>
+                    <button class="btn btn-secondary p-3 mt-5 ml-2" value="{{ item.id }}" type="button"
+                        id="add-cart">افزودن به سبد خرید</button>
+
+
+                </div>
+
+            </div>
         </div>
+    </div>
+</div>
 
 
 
-<br/><br/><br/><br/>
+<br /><br /><br /><br />
 
-
-<script src="{% static 'js/scripts.js' %}"></script>
 <script src="{% static 'js/jquery.js' %}"></script>
 
-    {% endfor %}
+<script>
+    $(document).on('click', '#add-cart', function (e) {
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'Cart_Add' %}",
+            data: {
+                product_id: $('#add-cart').val(),
+                product_qty: $('#qty-cart option:selected').text(),
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                action: 'post'
+            },
+            success: function (json) {
+                document.getElementById("cart_quantity").textContent = json.qty
+            },
+            error: function (xhr, errmsg, err) {
+                console.log(xhr)
+            },
+        });
+    })
+
+</script>
+
+
+{% endfor %}
 {% endblock %}
