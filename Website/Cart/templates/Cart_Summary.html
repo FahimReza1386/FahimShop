@@ -92,14 +92,22 @@
     </div>
 </div>
 
+
 {% endfor %}
+<br/><br/><br/><br/>
+<hr class="bg-danger" style="height: 5px ; margin-bottom: 5px ; opacity: 1" />
+    <div class="bg-primary p-5" >
+    <strong class="float-start" style="font-size: 30px ; margin: 30px;">
+    Total :
+</strong>
+    <h3 class="" style=" font-size: 30px ; text-align: center; padding: 30px ; font-weight:700; " >{{ totals|intcomma }} ﷼</h3>
+</div>
+<hr class="" style=" background-color: blue; height: 5px ; margin-top: 5px ; margin-bottom: 5px ; opacity: 1" />
+
+
 {% else %}
 <h2>Empty ...</h2>
 {% endif %}
-
-<br /><br /><br /><br />
-<br /><br /><br /><br />
-<br /><br /><br /><br />
 
  <script src="/static/js/jquery.js"></script>
 <script>

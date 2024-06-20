@@ -71,3 +71,30 @@ class Cart:
         self.session.modified = True
         thing = self.cart
         return thing
+
+    def cart_total(self):
+        #Get product Ids
+        product_ids = self.cart.keys()
+
+        # Get product ib database
+        products = Product.objects.filter(id__in = product_ids)
+
+        # Get Quantitys
+        qty = self.cart
+
+        {'5' , 4}
+
+        # Start counting at 0
+        total = 0
+        for key , val in qty.items():
+            key = int(key)
+            for product in products:
+                if product.id == key:
+                    if product.is_sale == True :
+                        total = total + (product.sale_price * val)
+                    else:
+                        total = total + (product.price * val)
+
+        return total
+
+
