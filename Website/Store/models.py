@@ -1,5 +1,7 @@
 from django.db import models
 import datetime
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 # Create your models here.
 
 #Categorys
@@ -26,6 +28,7 @@ class Customer(models.Model):
 
 
 
+
 #All of our Products
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -43,6 +46,38 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Profile(models.Model):
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    date_modifiesd = models.DateTimeField(User , auto_now=True)
+    Phone = models.CharField(max_length=11, default='' , blank=True)
+    address1 = models.CharField(max_length=250 , default='' , blank=True)
+    address2 = models.CharField(max_length=250 , default='' , blank=True)
+    city = models.CharField(max_length=250 , default='' , blank=True)
+    state = models.CharField(max_length=250 , default='' , blank=True)
+    zipcode = models.CharField(max_length=250 , default='' , blank=True)
+    country = models.CharField(max_length=250 , default='' , blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+
+#Create a user profile by default when user signs up
+
+def create_Profile(sender, instance, created, **kwargs):
+    if created:
+        user_profile = Profile(user=instance)
+        user_profile.save()
+
+# Automatic the profile things
+
+post_save.connect(create_Profile,sender=User)
+
+
+
+
 
 #Customer Orders
 class Order(models.Model):
