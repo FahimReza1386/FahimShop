@@ -10,4 +10,7 @@ urlpatterns = [
     path('Register/' , views.Register_User , name='Register'),
     path('Product/<int:id>' , views.Product_View , name='Product'),
     path('Category/<str:foo>' , views.Category1 , name='Admin'),
+    path('Category_summary/' , views.Category_Summary , name='Category_Summary'),
+    path('Update_user/' , views.Update_User , name='Update_User'),
+    path('Update_password/' , views.Update_Password , name='Update_Password'),
 ]

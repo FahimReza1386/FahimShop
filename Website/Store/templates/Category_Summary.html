@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <!-- Header-->
+
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Categories</h1>
+                    <p class="lead fw-normal text-white-50 mb-0 mt-5">Choose Your Category Below ..</p>
+                </div>
+            </div>
+        </header>
+<br/>
+
+
+<div class="container " >
+    <div class="text-right form-select-lg fw-bold " >
+            {% for cat in Categories %}
+                <a href="/Category/{{ cat.name }}" style="color: black; ">{{ cat.name }}</a>
+            <hr/>
+            {% endfor %}
+    </div>
+    </div>
+
+
+<br/>
+{% endblock %}

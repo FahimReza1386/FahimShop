@@ -7,15 +7,16 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'About' %}">About</a></li>
-
+                                                  <li class="nav-item"><a class="nav-link" href="{% url 'Update_User' %}">Profile</a></li>
 
 
                         {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Logout' %}">Logout</a></li>
+                          <li class="nav-item"><a class="nav-link" href="{% url 'Logout' %}">Logout</a></li>
                         {% else %}
 
                         <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Register' %}">Register</a></li>
+
                         {% endif %}
 
                         <div class="dropdown">
@@ -23,7 +24,7 @@
                         Category
                     </button>
                  <div class="dropdown-menu">
-                          <a class="dropdown-item" href="/">همه محصولات</a>
+                          <a class="dropdown-item" href="Category_summary/">همه محصولات</a>
                     <a class="dropdown-item" href="/Category/لپ-تاپ">لپ تاپ</a>
                     <a class="dropdown-item" href="/Category/پرینتر">پرینتر</a>
                     <a class="dropdown-item" href="/Category/موبایل">موبایل</a>

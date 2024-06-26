@@ -2,6 +2,7 @@ from django.shortcuts import render , get_object_or_404 , HttpResponse , HttpRes
 from .Cart import Cart
 from Store.models import Product
 from django.http import JsonResponse
+from django.contrib import messages
 # Create your views here.
 
 def Cart_Summary(request):
@@ -34,7 +35,9 @@ def Cart_Add(request):
         cart_quantity = cart.__len__()
 
         response = JsonResponse({"qty" : cart_quantity})
+        messages.success(request , ("با موفقیت اضافه شد ..."))
         return response
+
 
     else:
         return HttpResponse('s')
@@ -52,8 +55,11 @@ def Cart_Update(request):
 
         cart.Update(product_id = product_id , quantity = product_qty)
 
+
+        messages.success(request , ("با موفقیت تعداد سفارش تغییر یافت ..."))
         response = JsonResponse({"qty" : product_qty})
         return response
+
         #return HttpResponseRedirect('')
 
 def Cart_Delete(request):
@@ -67,6 +73,7 @@ def Cart_Delete(request):
         # Delete Dictionary or Cart
         cart.Delete(product_id = product_id)
 
+        messages.success(request , ("با موفقیت حذف شد ..."))
         response = JsonResponse({"id" : product_id})
         return response
 
