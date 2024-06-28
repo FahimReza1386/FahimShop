@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<!--  ------------- Header Page -------------- -->
+    <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-10 fw-bolder">Hi {{ user.first_name }} wellcome to the your site ...</h1>
+                </div>
+            </div>
+        </header>
+
+    <div class="container mt-5">
+
+        <div class="Update" style="width: 100% ; height: 50%;background: beige;overflow: hidden;display: flex;">
+                    <div class="Update_User"    style="cursor: pointer ;margin:80px 30px;background: #CBF3F0; width: 20rem;height: 20rem;padding: 10px 15px 10px 15px;text-align: center;    border: 2px solid; border-radius: 5px; ">
+            <h2 style="font-size: 25px; font-family: 'Vazir'; font-weight: bold;text-align: center; margin-top: 100px; text-shadow: 2px 3px 9px red;"><a href="{% url 'Update_User' %}" style="color: #000000">تغییر اطلاعات اولیه</a></h2>
+        </div>
+        <div class="Update_Password" style="cursor: pointer ;margin:80px 15px; background: #CBF3F0; width: 20rem;height: 20rem;padding: 10px 15px 10px 15px;text-align: center;    border: 2px solid; border-radius: 5px;" >
+            <h2 style="font-size: 25px; font-family: 'Vazir'; font-weight: bold;text-align: center; margin-top: 100px; text-shadow: 2px 3px 9px red;"><a href="{% url 'Update_Password' %}" style="    color: black;">تغییر رمز عبور</a></h2>
+        </div>
+        <div class="Update_Info" style="cursor: pointer ;margin:80px 15px ;background: #CBF3F0; width: 20rem;height: 20rem;padding: 10px 15px 10px 15px;text-align: center;    border: 2px solid; border-radius: 5px;" >
+            <h2 style="font-size: 25px; font-family: 'Vazir'; font-weight: bold;text-align: center; margin-top: 100px; text-shadow: 2px 3px 9px red;"><a href="{% url 'Update_info' %}" style="    color: black;">تغییر سایر اطلاعات</a></h2>
+        </div>
+        </div>
+
+
+        <h2 class="btn  mt-5" ><a href="/" class="btn btn-dark"> بازگشت به صفحه خانه</a></h2>
+
+    </div>
+
+
+<br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/>
+{% endblock %}

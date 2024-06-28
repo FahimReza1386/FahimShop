@@ -7,13 +7,33 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">به درباره ما خوش آمدید</h1>
-                    <p class="lead fw-normal text-white-50 mb-0 mt-5">WellCome to the My About Page.</p>
+                    <h1 class="display-4 fw-bolder">به بخش ورود خوش آمدید</h1>
+                    <p class="lead fw-normal text-white-50 mb-0 mt-5">... برای ارتباط بیشتر لطفا وارد حساب خود شوید</p>
                 </div>
             </div>
         </header>
 
-<p>Hi this page is login website</p>
+<br/>
+
+<h2 class="text-center"> ورود دانشجویان</h2>
+<div class="container mb-5 col-md-7 text-center">
+  <form  method="post" action="{% url 'Login' %}">
+      {% csrf_token %}
+    <div class="form-group m-4">
+      <input type="text" class="form-control text-center" id="UserName" placeholder="Enter UserName" name="UserName">
+    </div>
+    <div class="form-group m-4">
+      <input type="password" class="form-control text-center" id="Password" placeholder="Enter Password" name="Password">
+    </div>
+
+      <br/>
+
+    <button type="submit" style="width: 100px; height: 50px; text-align: center;" class="btn btn-success">ورود</button>
+  </form>
+</div>
+<br/><br/><br/>
 
 
+<br/><br/><br/><br/><br/>
+<br/><br/>
 {% endblock %}

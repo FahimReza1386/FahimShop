@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+
+<!--  ------------- Header Page -------------- -->
+
+            <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-10 fw-bolder">Update User Profile ...</h1>
+                </div>
+            </div>
+        </header>
+
+
+    <div class="container mt-5">
+        <form action="{% url 'Update_User' %}" method="post" >
+    {% csrf_token %}
+
+            {{ user_form }}
+    <br/><br/>
+    <button type="submit" class="btn btn-secondary ">
+        تغییر اطلاعات
+    </button>
+
+
+</form>
+    </div>
+
+<div class="container">
+</div>
+
+<br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/>
+{% endblock %}
