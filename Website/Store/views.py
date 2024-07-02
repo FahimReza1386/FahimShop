@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render , redirect
 from .forms import *
 from .models import Category,Product , Profile
@@ -7,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.db.models import Q
-
+from Cart.Cart import Cart
 # Create your views here.
 
 
@@ -27,6 +28,26 @@ def Login_User(request):
         user = authenticate(request , username=username , password=password)
         if user is not None:
             login(request , user)
+
+
+            #Do Some Shipping Cart Stuff
+            current_user = Profile.objects.get(user__id =request.user.id)
+
+            save_cart = current_user.old_cart
+
+            if save_cart:
+
+                converted_cart = json.loads(save_cart)
+
+                # Add the loaded cart dictionary to our session
+                # Get the Cart
+                cart = Cart(request)
+
+                # Loop  thrun the cart and add the item from
+                for key,value in converted_cart.items():
+                    cart.db_Add(product=key , quantity=value)
+
+
             messages.error(request , "!! تبریک ! با موفقیت به حساب خود وارد شدید ")
             return redirect('/')
         else:

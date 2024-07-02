@@ -60,6 +60,7 @@ class Profile(models.Model):
     zipcode = models.CharField(max_length=250 , default='' , blank=True)
     meliCode = models.CharField(max_length=10 , default="0" , blank=True)
     country = models.CharField(max_length=250 , default='' , blank=True)
+    old_cart=models.CharField(max_length=250 , default='' , blank=True , null=True)
 
     def __str__(self):
         return self.user.username
