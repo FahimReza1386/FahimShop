@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <!-- Header-->
+
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">سلام به شما </h1>
+                    <p class="lead fw-normal text-white-50 mb-0 mt-5"> به صفحه جستجو خوش آمدید</p>
+                </div>
+            </div>
+        </header>
+<br/><br/><br/><br/><br/><br/>
+
+
+<div class="container " >
+
+
+
+    <div class="card text-center" dir="rtl" >
+  <div class="card-header">جستجو حق شماست ...</div>
+  <div class="card-body">
+          <form action="{% url 'Search' %}" method="POST" dir="rtl">
+        {% csrf_token %}
+              <div class="form-group">
+    <label for="usr"  class="float-end" dir="rtl">جستجو :</label>
+    <input type="text" class="form-control" id="usr" placeholder="  پیدا کن هرچی که میخوای ..." name="searched">
+        </div>
+                <button type="submit" class="btn btn-success float-start ">
+        جستجو
+    </button>
+   <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+              {% for item in prd %}
+              <br/>
+              <br/>
+
+
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{ item.image.url }}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h2 class="fw-bolder">{{ item.name }}</h2>
+                                    <hr/>
+                                    <h6 class="fw-bolder">{{ item.description }}</h6>
+                                    <hr/>
+                                    <!-- Product price-->
+
+                                    {{ item.price }} : قیمت
+                                    <hr/>
+                                    در دسته :
+                                    <a href="#">{{ item.category }}</a>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/Product/1">اطلاعات بیشتر</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+              {% endfor %}
+
+
+
+
+    </form>
+  </div>
+  </div>
+
+
+</div>
+
+    </div>
+
+
+<br/><br/><br/><br/><br/><br/>
+{% endblock %}
+
+
+<!--        <br/>-->
+<!--        <br/>-->
+<!--                        <div class="card bg-danger  " style="display: inline-block">-->
+<!--                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem ; right: 0.5rem;">تخفیف</div>-->
+<!--                            &lt;!&ndash; Product image&ndash;&gt;-->
+<!--                            <img class="card-img-top" src="{{ item.image.url }}" alt="..." />-->
+<!--                            &lt;!&ndash; Product details&ndash;&gt;-->
+<!--                            <div class="card-body p-4">-->
+<!--                                <div class="text-center">-->
+<!--                                    &lt;!&ndash; Product name&ndash;&gt;-->
+<!--                                    <h5 class="fw-bolder">{{ item.name }}</h5>-->
+<!--                                    <h5 class="fw-bolder">{{ item.description }}</h5>-->
+<!--                                    <hr/>-->
+<!--                                    &lt;!&ndash; Product price&ndash;&gt;-->
+<!--                                    <br/>-->
+<!--                                    <h6>  {{ item.price }}   : قیمت با تخفیف</h6>تومان-->
+<!--                                    <hr/>-->
+<!--                                    در دسته :-->
+<!--                                    <a href="#">{{ item.category }}</a>-->
+
+<!--                                    <div class="d-flex justify-content-center small  text-warning mb-2 mt-3">-->
+<!--                                        <div class="bi-star-fill"></div>-->
+<!--                                        &nbsp;&nbsp;تخفیف&nbsp;&nbsp;-->
+<!--                                        <div class="bi-star-fill"></div>-->
+<!--                                    </div>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            </div>-->

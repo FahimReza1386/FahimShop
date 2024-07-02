@@ -15,4 +15,5 @@ urlpatterns = [
     path('Update_info/' , views.Update_info , name='Update_info'),
     path('Update_password/' , views.Update_Password , name='Update_Password'),
     path('Update_profile/' , views.Update_Profile , name='Update_Profile'),
+    path('Search/' , views.Search , name='Search'),
 ]

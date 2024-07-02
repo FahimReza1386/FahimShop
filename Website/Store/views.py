@@ -6,7 +6,10 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from django.db.models import Q
+
 # Create your views here.
+
 
 
 def Home(request):
@@ -149,3 +152,23 @@ def Update_Profile(request):
     else:
         messages.error(request , ('لطفا برای دسترسی اول به اکانت خود متصل شوید ...'))
         return redirect('/')
+
+
+def Search(reqeust):
+    # Get Method in Request
+
+    if reqeust.method == 'POST':
+
+        searched = reqeust.POST['searched']
+
+        # Get Query in Product
+        prd = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched)).all()
+
+        # Get The null
+        if not searched :
+            messages.success(reqeust , ('جستجو کن برادرمن / خواهر من...'))
+            return render(request=reqeust , template_name='search.html' , context={})
+        else:
+            return render(request=reqeust , template_name="search.html" , context={'prd' : prd })
+    else:
+        return render(request=reqeust , template_name="search.html" , context={})
