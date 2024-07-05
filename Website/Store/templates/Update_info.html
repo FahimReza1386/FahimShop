@@ -17,8 +17,18 @@
     <div class="container mt-5">
         <form action="{% url 'Update_info' %}" method="post" >
     {% csrf_token %}
+
+            <h2 class="text-center ">Billing Information</h2>
             {{ form.as_p }}
     <br/><br/>
+
+
+
+            <h2 class="text-center">Shipping Information </h2>
+            {{ Shipping_Form.as_p }}
+
+
+            <br/><br/>
     <button type="submit" class="btn btn-secondary">
          Save The Changed
     </button>    <button type="submit" class="btn btn-danger">

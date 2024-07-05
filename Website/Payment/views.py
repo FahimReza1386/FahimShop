@@ -4,4 +4,4 @@ from django.shortcuts import render
 
 
 def Home(request):
-    return render(request=request , template_name="Payment_Home.html" , context={})
+    return render(request, template_name="Payment_Home.html" , context={})

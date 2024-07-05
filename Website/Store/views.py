@@ -9,9 +9,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.db.models import Q
 from Cart.Cart import Cart
+
+from Payment.forms import ShippingForm
+from Payment.models import ShippingAddress
+
 # Create your views here.
-
-
 
 def Home(request):
     Products = Product.objects.all()
@@ -154,13 +156,18 @@ def Update_Password(request):
 
 def Update_info(request):
     if request.user.is_authenticated:
+        # Get Current User
         current_user= Profile.objects.get(user__id=request.user.id)
+        # Get Current User`s Shipping Info
+        shipping_form_user = ShippingAddress.objects.get(user__id = request.user.id)
+        Shipping_form = ShippingForm(request.POST or None , instance=shipping_form_user)
         form = UpdateUserInfo(request.POST or None , instance=current_user)
-        if form.is_valid():
+        if form.is_valid() or Shipping_form.is_valid():
             form.save()
+            Shipping_form.save()
             messages.success(request , "تبریک میگم اطلاعات جدید شما با موفقیت ثبت شد ...")
             return redirect('/')
-        return render(request=request, template_name='Update_info.html', context={'form': form})
+        return render(request=request, template_name='Update_info.html', context={'form': form , 'Shipping_Form' : Shipping_form})
 
     else:
         messages.error(request , "لطفا قبل از هرکاری اول به حساب خود کانکت شوید ...")
