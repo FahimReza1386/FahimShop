@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+    <!-- Header-->
+
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Checkout</h1>
+                    <p class="lead fw-normal text-white-50 mb-0 mt-5">WellCome to Checkout The Your Order ....</p>
+                </div>
+            </div>
+        </header>
+<br/><br/><br/><br/><br/><br/>
+
+
+<div class="container " >
+   <div class="card">
+  <div dir="rtl" class="card-header text-center">
+      فاکتور خرید شما ...
+  </div>
+          {% for product in products  %}
+  <div class="card-body text-end" dir="rtl">
+
+      <strong class="text-center">نام محصول :</strong>
+            <h6 style="text-align: center">{{ product.name }}</h6>
+            <br/>
+            {% if product.is_sale %}
+                <strong class="text-center">قیمت محصول :</strong>
+                  <h6 style="text-align: center">{{ product.sale_price }}</h6>
+
+
+            {% else %}
+            <strong class="text-center">قیمت محصول :</strong>
+            <h5 style="text-align: center">{{ product.price|intcomma }}</h5>
+
+            {% endif %}
+            <br/><br/>
+            <strong class="text-center"> تعداد سفارش :</strong>
+            {% for key,value in qty.items %}
+
+                {% if key == product.id|slugify %}
+                    <h5 style="text-align: center">{{ value }}</h5>
+                {% endif %}
+
+            {% endfor %}
+            <br/>
+      <hr style="color: black ; opacity: 1">
+      </div>
+             {% endfor %}
+
+                   <strong class="text-end p-3" dir = rtl>قیمت نهایی :</strong>
+                <h5 style="text-align: center ; margin-bottom: 50px ; font-weight:bold ">{{ total|intcomma }} تومان</h5>
+
+      <a href="{% url 'Cart_Summary' %}" class="btn btn-sm btn-outline-secondary">
+          Update Items
+      </a>
+
+  </div>
+
+    <div dir = rtl  class="text-right card mt-5 bg-light text-info">
+        <div class="card-header">
+            اطلاعات حمل و نقل :
+        </div>
+        <div class="card-body ">
+            <h5 style="font-size: 20px ; font-family: 'vazir' , sans-serif ; font-weight: bold ; margin: 20px 20px "> {{ shipping_form.as_p }}</h5>
+        </div>
+        <div class="card-footer">
+            <a href="#" dir = rtl class="btn btn-secondary float-left"> پرداخت سفارشات</a>
+
+        </div>
+    </div>
+</div>
+
+
+
+<br/><br/><br/><br/><br/><br/>
+
+{% endblock %}

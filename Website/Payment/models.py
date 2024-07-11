@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from Store.models import Product
-
+from django.db.models.signals import post_save
 # Create your models here.
 
 class ShippingAddress(models.Model):
@@ -23,6 +23,18 @@ class ShippingAddress(models.Model):
 
     def __str__(self):
         return f'Shipping Address - {str(self.id)}'
+
+
+# Create a User Shipping Address is Default When Your User Sign ip
+def create_shipping_address(sender , instance, created, **kwargs):
+    if created :
+        user_shipping = ShippingAddress(user=instance)
+        user_shipping.save()
+
+# Automatic the Shipping_Address Thing
+post_save.connect(create_shipping_address, sender=User)
+
+
 
 
 

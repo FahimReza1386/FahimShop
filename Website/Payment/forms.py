@@ -10,15 +10,15 @@ class ShippingForm(forms.ModelForm):
             item.field.widget.attrs['style'] = 'text-align: center;'
             item.field.widget.attrs['style'] = 'font-family: "Vazir";'
 
-    Shipping_full_name = forms.CharField(label = 'full_name :' , required=True )
-    Shipping_email = forms.CharField(label = 'email :' , required=True )
-    Shipping_address1 = forms.CharField(label = 'address1 :' , required=True )
-    Shipping_address2 = forms.CharField(label = 'address2 :' , required=False )
-    Shipping_city = forms.CharField(label = 'city :' , required=True )
-    Shipping_country = forms.CharField(label = 'country :' , required=True )
-    Shipping_state = forms.CharField(label = 'state :' , required=False )
-    Shipping_zip_Code= forms.CharField(label = 'zip_Code :' , required=False )
-    Shipping_phone_number = forms.CharField(label = 'phone_number :' , required=True )
+    Shipping_full_name = forms.CharField(label = 'نام کامل  :' , required=True )
+    Shipping_email = forms.CharField(label = 'ایمیل  :' , required=True )
+    Shipping_address1 = forms.CharField(label = 'ادرس اول :' , required=True )
+    Shipping_address2 = forms.CharField(label = 'ادرس دوم :' , required=False )
+    Shipping_city = forms.CharField(label = 'شهر :' , required=True )
+    Shipping_country = forms.CharField(label = 'کشور :' , required=True )
+    Shipping_state = forms.CharField(label = 'وضعیت :' , required=False )
+    Shipping_zip_Code= forms.CharField(label = 'کدپستی :' , required=False )
+    Shipping_phone_number = forms.CharField(label = 'شماره تماس :' , required=True )
 
     class Meta:
         model = ShippingAddress
