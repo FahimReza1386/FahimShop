@@ -60,9 +60,47 @@
 
   </div>
 
+
+
+
     <div dir = rtl  class="text-right card mt-5 bg-light text-info">
         <div class="card-header">
             اطلاعات حمل و نقل :
+        </div>
+        <div class="card-body ">
+            <form action="#" method="POST">
+                {% csrf_token %}
+               نام کامل : {{ shipping_form.Shipping_full_name }}
+                <br/>
+               ایمیل  : {{ shipping_form.Shipping_email }}
+               <br/>
+                ادرس اول : {{ shipping_form.Shipping_address1 }}
+               <br/>
+
+               ادرس دوم : {{ shipping_form.Shipping_address2 }}
+               <br/>
+
+               شهر : {{ shipping_form.Shipping_city }}
+               <br/>
+
+               وضعیت : {{ shipping_form.Shipping_state }}
+               <br/>
+
+               کدپستی : {{ shipping_form.Shipping_zip_Code }}
+               <br/>
+
+               کشور : {{ shipping_form.Shipping_country }}
+            </form>
+                        <a class="btn btn-secondary float-left " href="{% url 'Checkout_Payment' %}">تغییر فرم حمل و نقل</a>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-success float-left" href="#">ادامه روند خرید</a>
+        </div>
+    </div>
+
+    <div dir = rtl  class="text-right card mt-5 bg-light text-info">
+        <div class="card-header">
+            اطلاعات صورتحساب :
         </div>
         <div class="card-body ">
                         <form action="{% url 'Billing_Info'  %}" method="POST">
@@ -70,13 +108,13 @@
         </div>
         <div class="card-footer">
                 {% csrf_token %}
-
-                <button type="submit">اتصال به صورتحساب سفارشات</button>
-
+                {{ biiling_Form.as_p }}
             </form>
         </div>
     </div>
 </div>
+</div>
+
 
 
 

@@ -71,7 +71,7 @@ class UpdateUserInfo(forms.ModelForm):
     address1 = forms.CharField(required=True , label='Address1')
     address2 = forms.CharField(required=False , label='Address2')
     city = forms.CharField(required=True , label='City')
-    state = forms.CharField(required=True , label='State')
+    state = forms.CharField(required=False , label='State')
     zipcode = forms.CharField(required=False , label='Zipcode')
     meliCode = forms.CharField(required=False ,label='Meli Code')
     country = forms.CharField(required=True ,label='Country')
